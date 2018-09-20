@@ -5,7 +5,7 @@ const $ = (selector) => {
   // get all of the elements on the page with the secific selector that was passed in and store them into a variable, it is an array
   // const nodes = document.querySelectorAll(selector);
 
-  // using a a ternary expression to check conditions 
+  // using a a ternary expression to check conditions (shorter way)
   let nodes = Array.isArray(selector) ? selector : document.querySelectorAll(selector);
 
   // long way of doing if/else
@@ -58,13 +58,18 @@ const $ = (selector) => {
     nodes.forEach((node) => {
       el = node.parentNode.firstChild;
 
+      // as long as there are siblings, keep looping through them
       while (el = el.nextElementSibling) {
+        // do not add the node that we are currently targetting
         if (el != node) {
+
+          // push all sibling elements to the sibs array
           sibs.push(el);
         }
       }
     })
 
+    // return only the siblings that we want to affect with other methods
     return $(sibs);
   }
   
